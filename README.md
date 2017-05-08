@@ -1,4 +1,7 @@
-qmlffmpeg
+# qmlffmpeg
+=====
+study by bianshifeng
+
 =====
 ffmpeg media stream player binding for qtmultimedia
 
