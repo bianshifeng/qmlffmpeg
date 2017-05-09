@@ -1,0 +1,4 @@
+TEMPLATE =
+
+SUBDIRS +=
+    qmlffmpeg/qmlffmpeg

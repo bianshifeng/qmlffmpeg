@@ -2,6 +2,9 @@
 #define _FFMPEG_CLIENT_H__
 
 #include "Object.h"
+#include <queue>
+
+using namespace std;
 
 namespace ffmpeg {
 

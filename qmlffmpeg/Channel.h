@@ -139,6 +139,10 @@ struct Channel : Client
 
 	virtual void lockImage() = 0;
 	virtual void* createImage(int width, int height, int& align) = 0;
+    virtual int getBits(){
+        return av_get_bits_per_pixel(av_pix_fmt_desc_get(pixelFormat));
+    }
+
 	virtual void unlockImage() = 0;
 	
 	virtual void* createSound(AVSampleFormat sampleFormat, int channelCount, int sampleCount, int bitRate, int sampleRate, int& align) = 0;

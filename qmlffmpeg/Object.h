@@ -11,23 +11,24 @@ extern "C"
 #	include <libavcodec/avcodec.h>
 #	include <libswscale/swscale.h>
 #	include <libavformat/avformat.h>
-#	include <libavformat/url.h>
 #	include <libswresample/swresample.h>
 #	include <libavutil/imgutils.h>
 #	include <libavutil/log.h>
 #	include <libavutil/channel_layout.h>
 #	include <libavutil/samplefmt.h>
+#   include <libavutil/pixfmt.h>
+//#	include <libavformat/url.h>
 }
 
 #pragma comment(lib, "Advapi32.lib")
 #pragma comment(lib, "ws2_32.lib")
-#pragma comment(lib, "libgcc.a")
-#pragma comment(lib, "libmingwex.a")
-#pragma comment(lib, "libavcodec.a")
-#pragma comment(lib, "libavutil.a")
-#pragma comment(lib, "libswscale.a")
-#pragma comment(lib, "libswresample.a")
-#pragma comment(lib, "libavformat.a")
+//#pragma comment(lib, "libgcc.a")
+//#pragma comment(lib, "libmingwex.a")
+#pragma comment(lib, "avcodec.lib")
+#pragma comment(lib, "avutil.lib")
+#pragma comment(lib, "swscale.lib")
+#pragma comment(lib, "swresample.lib")
+#pragma comment(lib, "avformat.lib")
 //#pragma comment(lib, "libpthreadGC2.a")
 //#pragma comment(lib, "iconv.lib")
 

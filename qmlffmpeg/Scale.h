@@ -13,14 +13,14 @@ struct Scale : Object
 
 	SwsContext* context;
 	int brightness, contrast, saturation;
-	PixelFormat inputPixelFormat, outputPixelFormat;
+    AVPixelFormat inputPixelFormat, outputPixelFormat;
 	int inputWidth, inputHeight, outputWidth, outputHeight;
 
 	Scale() 
 		: 
 		context(nullptr), brightness(DefaultBrightness), contrast(DefaultContrast), saturation(DefaultSaturation), 
-		inputPixelFormat(PixelFormat::PIX_FMT_NONE), inputWidth(0), inputHeight(0), 
-		outputPixelFormat(PixelFormat::PIX_FMT_NONE), outputWidth(0), outputHeight(0)
+        inputPixelFormat(AVPixelFormat::AV_PIX_FMT_NONE), inputWidth(0), inputHeight(0),
+        outputPixelFormat(AVPixelFormat::AV_PIX_FMT_NONE), outputWidth(0), outputHeight(0)
 	{
 	}
 	virtual ~Scale() { free(); }
@@ -28,7 +28,7 @@ struct Scale : Object
 	SwsContext* operator ->() { return context; }
 	SwsContext* operator &() { return context; }
 
-	bool reset(PixelFormat inputPixelFormat, int inputWidth, int inputHeight, PixelFormat outputPixelFormat, int outputWidth, int outputHeight)
+    bool reset(AVPixelFormat inputPixelFormat, int inputWidth, int inputHeight, AVPixelFormat outputPixelFormat, int outputWidth, int outputHeight)
 	{
 		free();
 		this->inputPixelFormat = inputPixelFormat;
@@ -42,8 +42,8 @@ struct Scale : Object
 		return ok;
 	}
 
-	bool reset(PixelFormat inputPixelFormat, int width, int height, PixelFormat outputPixelFormat) { return reset(inputPixelFormat, width, height, outputPixelFormat, width, height); }
-	bool reset(PixelFormat pixelFormat, int inputWidth, int inputHeight, int outputWidth, int outputHeight) { return reset(pixelFormat, inputWidth, inputHeight, pixelFormat, outputWidth, outputHeight); }
+    bool reset(AVPixelFormat inputPixelFormat, int width, int height, AVPixelFormat outputPixelFormat) { return reset(inputPixelFormat, width, height, outputPixelFormat, width, height); }
+    bool reset(AVPixelFormat pixelFormat, int inputWidth, int inputHeight, int outputWidth, int outputHeight) { return reset(pixelFormat, inputWidth, inputHeight, pixelFormat, outputWidth, outputHeight); }
 
 	void scale(AVFrame* inputFrame, AVFrame* outputFrame)
 	{
@@ -63,7 +63,7 @@ struct Scale : Object
 	{
 		if(context) av_free(context);
 		context = nullptr;
-		inputPixelFormat = outputPixelFormat = PixelFormat::PIX_FMT_NONE;
+        inputPixelFormat = outputPixelFormat = AVPixelFormat::AV_PIX_FMT_NONE;
 		inputWidth = inputHeight = outputWidth = outputHeight = 0;
 		ok = false;
 	}

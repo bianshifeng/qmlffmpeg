@@ -11,7 +11,7 @@ struct Frame : Object
 {
 	AVFrame* frame;
 	void* buffer;
-	PixelFormat pixelFormat;
+    AVPixelFormat pixelFormat;
 	int width, height, size, align;
 	AVSampleFormat sampleFormat;
 	int channelCount, sampleCount;
@@ -20,7 +20,7 @@ struct Frame : Object
 		: 
 		frame(nullptr), 
 		buffer(nullptr), 
-		pixelFormat(PixelFormat::PIX_FMT_NONE), 
+        pixelFormat(AVPixelFormat::AV_PIX_FMT_NONE),
 		width(0), 
 		height(0), 
 		size(0), 
@@ -43,7 +43,7 @@ struct Frame : Object
 		return ok;
 	}
 
-	bool reset(PixelFormat pixelFormat, int width, int height, void* buffer = nullptr, int align = 1)
+    bool reset(AVPixelFormat pixelFormat, int width, int height, void* buffer = nullptr, int align = 1)
 	{
 		free();
 		this->pixelFormat = pixelFormat;
@@ -79,7 +79,7 @@ struct Frame : Object
 		return ok;
 	}
 
-	void defaults()	{ avcodec_get_frame_defaults(frame); }
+    void defaults()	{ av_frame_unref(frame); }
 
 	void flip()
 	{
@@ -98,7 +98,7 @@ struct Frame : Object
 		if(buffer) av_free(buffer);
 		frame = nullptr;
 		buffer = nullptr;
-		pixelFormat = PixelFormat::PIX_FMT_NONE;
+        pixelFormat = AVPixelFormat::AV_PIX_FMT_NONE;
 		sampleFormat = AVSampleFormat::AV_SAMPLE_FMT_NONE; 
 		width = height = size = channelCount = align = 0;
 		ok = false;
